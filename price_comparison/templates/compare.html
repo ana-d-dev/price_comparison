@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Compare Croatian Mobile Providers – Mobile Plans & Prices</title>
+    {% include 'head.html' %}
+</head>
+<body>
+    <main class="container">
+
+        <!-- NAVIGATION -->
+        {% include 'header.html' %}
+
+        <!-- TITLE / DESCRIPTION -->
+        <section class="text-center my-4">
+            <h1 class="page-title">Compare Croatian Mobile Providers</h1>
+            <p class="lead">
+                Compare mobile plans from all Croatian providers side by side in one table.
+            </p>
+        </section>
+
+        <!-- LAST UPDATE -->
+        {% include 'last_update.html' %}
+
+        <!-- TABLE -->
+        <section class="table-responsive mt-4">
+            <table class="table table-dark table-hover align-middle comparison-table">
+                <thead>
+                    <tr>
+                        <th>Provider</th>
+                        <th>Name</th>
+                        <th class="sortable" onclick="sortTable(2)">Price</th>
+                        <th class="sortable" onclick="sortTable(3)">GB</th>
+                        <th class="sortable" onclick="sortTable(4)">Minutes</th>
+                        <th class="sortable" onclick="sortTable(5)">SMS</th>
+                        <th class="sortable" onclick="sortTable(6)">Units</th>
+                        <th class="sortable" onclick="sortTable(7)">1 GB</th>
+                        <th class="sortable" onclick="sortTable(8)">60 min</th>
+                        <th class="sortable" onclick="sortTable(9)">1000 Units</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for row in rows %}
+                    <tr>
+                        <td>{{ row['provider'] }}</td>
+                        <td>{{ row['name'] }}</td>
+                        <td>{{ row['price'] }}</td>
+                        <td>{{ row['gb'] }}</td>
+                        <td>{{ row['minutes'] }}</td>
+                        <td>{{ row['sms'] }}</td>
+                        <td>{{ row['units'] }}</td>
+                        <td>{{ row['one_gb_price'] }}</td>
+                        <td>{{ row['sixty_min_price'] }}</td>
+                        <td>{{ row['thousand_units'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <!-- FOOTER -->
+        {% include 'footer.html' %}
+
+    </main>
+
+    <!-- BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous">
+    </script>
+
+    <!-- SORTING SCRIPT -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const table = document.querySelector(".comparison-table");
+        if (!table) return;
+
+        const tbody = table.tBodies[0];
+        const originalRows = Array.from(tbody.rows);
+        const sortState = {}; // columnIndex -> 0(original), 1(asc), 2(desc)
+
+        window.sortTable = function(columnIndex) {
+            if (sortState[columnIndex] === undefined) sortState[columnIndex] = 0;
+
+            // cycle: 0(original) -> 1(asc) -> 2(desc) -> 0(original)
+            sortState[columnIndex] = (sortState[columnIndex] + 1) % 3;
+            const state = sortState[columnIndex];
+
+            let rows;
+            if (state === 0) {
+                rows = originalRows.slice(); // back to original order
+            } else {
+                rows = Array.from(tbody.rows);
+                const ascending = state === 1;
+
+                rows.sort((a, b) => {
+                    let aText = a.cells[columnIndex].innerText.trim();
+                    let bText = b.cells[columnIndex].innerText.trim();
+
+                    // numeric parsing
+                    const aNum = parseFloat(aText.replace(/[^\d.,-]/g, '').replace(',', '.'));
+                    const bNum = parseFloat(bText.replace(/[^\d.,-]/g, '').replace(',', '.'));
+
+                    if (!isNaN(aNum) && !isNaN(bNum)) {
+                        return ascending ? aNum - bNum : bNum - aNum;
+                    }
+
+                    // fallback to string comparison
+                    return ascending ? aText.localeCompare(bText) : bText.localeCompare(aText);
+                });
+            }
+
+            rows.forEach(row => tbody.appendChild(row));
+        };
+    });
+    </script>
+
+</body>
+</html>

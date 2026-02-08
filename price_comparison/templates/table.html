@@ -1,0 +1,32 @@
+<section class="table-responsive mt-4">
+    <table class="table table-dark table-hover align-middle comparison-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th class="sortable" onclick="sortTable(1)">Price</th>
+                <th class="sortable" onclick="sortTable(2)">GB</th>
+                <th class="sortable" onclick="sortTable(3)">Minutes</th>
+                <th class="sortable" onclick="sortTable(4)">SMS</th>
+                <th class="sortable" onclick="sortTable(5)">Units</th>
+                <th class="sortable" onclick="sortTable(6)">1 GB</th>
+                <th class="sortable" onclick="sortTable(7)">60 min</th>
+                <th class="sortable" onclick="sortTable(8)">1000 Units</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in rows %}
+            <tr>
+                <td>{{ row['name'] }}</td>
+                <td>{{ row['price'] }}</td>
+                <td>{{ row['gb'] }}</td>
+                <td>{{ row['minutes'] }}</td>
+                <td>{{ row['sms'] }}</td>
+                <td>{{ row['units'] }}</td>
+                <td>{{ row['one_gb_price'] }}</td>
+                <td>{{ row['sixty_min_price'] }}</td>
+                <td>{{ row['thousand_units'] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</section>

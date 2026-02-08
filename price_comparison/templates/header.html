@@ -1,0 +1,54 @@
+<header class="py-3">
+    <ul class="nav nav-pills justify-content-center flex-wrap">
+
+        <li class="nav-item">
+            <a href="{{ url_for('home') }}"
+               class="nav-link {% if active_page == 'home' %}active{% endif %}">
+                Home
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ url_for('a1') }}"
+               class="nav-link {% if active_page == 'a1' %}active{% endif %}">
+                A1
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ url_for('bon_bon') }}"
+               class="nav-link {% if active_page == 'bon_bon' %}active{% endif %}">
+                Bon-Bon
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ url_for('tcom') }}"
+               class="nav-link {% if active_page == 'tcom' %}active{% endif %}">
+                T-Com
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ url_for('telemach') }}"
+               class="nav-link {% if active_page == 'telemach' %}active{% endif %}">
+                Telemach
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ url_for('tomato') }}"
+               class="nav-link {% if active_page == 'tomato' %}active{% endif %}">
+                Tomato
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ url_for('compare') }}"
+               class="nav-link {% if active_page == 'compare' %}active{% endif %}">
+                Compare
+            </a>
+        </li>
+
+    </ul>
+</header>

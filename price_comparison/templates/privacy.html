@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ title }}</title>
+    {% include 'head.html' %}
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- PAGE CONTENT -->
+    <main class="container flex-grow-1">
+
+        <!-- NAVIGATION -->
+        {% include 'header.html' %}
+
+            <!-- TITLE -->
+        <section class="text-center my-4">
+            <h1 class="page-title">Privacy Policy</h1>
+            <p class="lead">
+                This page explains how data is handled on this website.
+            </p>
+        </section>
+
+        <!-- PERSONAL DATA -->
+        <section class="my-5">
+            <h4>Personal Data</h4>
+            <p>
+                This website does not collect, store, or process personal data from visitors.
+            </p>
+        </section>
+
+        <!-- COOKIES -->
+        <section class="my-5">
+            <h4>Cookies</h4>
+            <p>
+                This website does not use cookies for tracking or advertising purposes.
+            </p>
+        </section>
+
+        <!-- ANALYTICS -->
+        <section class="my-5">
+            <h4>Analytics</h4>
+            <p>
+                No third-party analytics or tracking tools are used on this website.
+            </p>
+        </section>
+
+        <!-- PUBLIC DATA -->
+        <section class="my-5">
+            <h4>Publicly Available Data</h4>
+            <p>
+                All displayed mobile plan information is collected from publicly available
+                sources on provider websites. The data is used for informational and
+                comparison purposes only.
+            </p>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="my-5">
+            <h4>Contact</h4>
+            <p>
+                If you have questions regarding this privacy policy, you can contact the
+                site owner via the contact page.
+            </p>
+        </section>
+
+        <!-- FOOTER -->
+        {% include 'footer.html' %}
+    </main>
+</body>
+</html>

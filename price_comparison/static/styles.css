@@ -1,0 +1,226 @@
+/* =========================
+   CSS VARIABLES
+========================= */
+:root {
+    --bg-main: #0f172a;
+    --bg-table: #020617;
+    --bg-row: #1e293b;
+    --bg-row-hover: #334155;
+    --bg-card: #1e293b;
+    --bg-card-hover: #334155;
+    --text-main: #f8fafc;
+    --text-muted: #cbd5e1;
+    --accent: #38bdf8;
+}
+
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+    box-sizing: border-box;
+}
+
+/* =========================
+   BODY
+========================= */
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+.nav-link {
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    color: var(--accent);
+}
+
+.nav-pills .nav-link {
+    background-color: var(--bg-card);
+    margin: 0 5px;
+    padding: 10px 20px;
+    border-radius: 0;
+    transition: 0.2s;
+}
+
+.nav-pills .nav-link:hover {
+    color: var(--accent);
+    background-color: var(--bg-card-hover);
+}
+
+.nav-pills .nav-link.active {
+    background-color: #0ea5e9;
+    color: #020617;
+}
+
+/* =========================
+   PAGE TITLE & LEAD
+========================= */
+.page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+.lead {
+    max-width: 900px;
+    margin: 0 auto;
+    color: var(--text-muted);
+}
+
+/* =========================
+   TABLE
+========================= */
+.comparison-table {
+    width: 100%;
+}
+
+.comparison-table thead th {
+    background-color: var(--bg-table);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    border-bottom: none;
+}
+
+.comparison-table tbody tr {
+    background-color: var(--bg-row);
+}
+
+.comparison-table tbody tr:hover {
+    background-color: var(--bg-row-hover);
+}
+
+.comparison-table th,
+.comparison-table td {
+    vertical-align: middle;
+    padding: 0.45rem;
+}
+
+/* =========================
+   SORTABLE COLUMNS
+========================= */
+th.sortable {
+    cursor: pointer;
+    color: var(--accent);
+    transition: color 0.2s;
+}
+
+th.sortable:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* =========================
+   PROVIDER CARDS
+========================= */
+.provider-card {
+    position: relative;
+    padding: 20px;
+    text-align: center;
+    color: var(--text-main);
+    font-weight: 600;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #1e293b, #27334d);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    overflow: hidden;
+}
+
+.provider-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 30px rgba(56, 189, 248, 0.6);
+    background: linear-gradient(145deg, #2c3e50, #3a4a62);
+}
+
+.provider-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 12px;
+}
+
+.provider-card h5 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 6px 0;
+    background: rgba(0, 0, 0, 0.5);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* =========================
+   RESPONSIVE RULES
+========================= */
+
+/* TABLET (≤ 992px): name, price, GB, units */
+@media (max-width: 992px) {
+    .comparison-table th:nth-child(n+5),
+    .comparison-table td:nth-child(n+5) {
+        display: none;
+    }
+}
+
+
+/* MOBILE (≤ 768px): name, price, GB */
+@media (max-width: 768px) {
+    .comparison-table th:nth-child(n+4),
+    .comparison-table td:nth-child(n+4) {
+        display: none;
+    }
+
+    .page-title {
+        font-size: 1.6rem;
+    }
+
+    .lead {
+        font-size: 0.95rem;
+        padding: 0 10px;
+    }
+}
+
+
+/* LARGE SCREENS (≥ 1200px): subtle card scaling */
+@media (min-width: 1200px) {
+    .provider-card {
+        padding: 28px;
+    }
+
+    .provider-card img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .provider-card h5 {
+        font-size: 1.05rem;
+    }
+
+    footer {
+        margin-top: 6rem;
+    }
+}
+
+
+
