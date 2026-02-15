@@ -151,6 +151,7 @@ class Bon:
             new_price = (price
                          .replace('EUR/tj.', '')
                          .replace('EUR/mj.', '')
+                         .replace('EUR', '')
                          .replace(',', '.').strip())
 
             if 'Flat' in value:             # Internet flat packages
