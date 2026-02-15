@@ -49,15 +49,17 @@ def main() -> None:
        4. Skip database insertion if any workflow fails.
        5. Log all actions, errors, and failures.
     """
-    args = [arg.strip().lower() for arg in sys.argv[1:]]
+    args = [arg.strip().lower() for arg in sys.argv[1:] if arg.strip()]
     all_data: list[dict] = []
     failed_providers: list[str] = []
 
+    if not args:
+        logger.error('No provider specified. Usage: python -m price_comparison.scripts.main_runner a1 bon com telemach tomato')
+        sys.exit(1)
+
     for provider in args:
         if provider not in PROVIDERS:
-            logger.error(
-                f"Invalid provider '{provider}'. "
-            )
+            logger.error(f"Invalid provider '{provider}'. ")
             continue
 
         try:
@@ -71,6 +73,11 @@ def main() -> None:
             logger.exception(f"Workflow '{provider}' failed")
             # continue with next provider
             failed_providers.append(provider)
+
+
+    if not all_data and args:
+        logger.error("No valid providers specified. Nothing to do.")
+        sys.exit(1)
 
     if failed_providers:
         logger.error(
