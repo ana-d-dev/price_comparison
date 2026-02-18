@@ -77,7 +77,7 @@ class TCom:
         """
         try:
             # Launch browser instance (headless=False for debugging)
-            self.browser = self.p.chromium.launch(headless=False)
+            self.browser = self.p.chromium.launch(headless=True)
 
             # Open a new browser page
             self.page = self.browser.new_page()

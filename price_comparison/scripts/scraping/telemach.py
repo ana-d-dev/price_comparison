@@ -69,7 +69,12 @@ class Telemach:
         """
         try:
             # Launch browser in non-headless mode.
-            self.browser = self.p.chromium.launch(headless=False)
+            self.browser = self.p.chromium.launch(headless=True, args=[
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-gpu",
+            ])
 
             # Open a new browser.
             self.page = self.browser.new_page()

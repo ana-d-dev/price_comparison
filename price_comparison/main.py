@@ -39,7 +39,10 @@ def tcom():
 @app.route('/telemach')
 def telemach():
     rows = get_provider_data('TELEMACH')
-    return render_template('telemach.html', rows=rows, date=date, last_update=last_update(), active_page='telemach')
+    if rows:
+        return render_template('telemach.html', rows=rows, date=date, last_update=last_update(), active_page='telemach')
+    else:
+        return render_template('unavailable.html', active_page='telemach')
 
 
 @app.route('/tomato')
@@ -70,7 +73,7 @@ def privacy():
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
 
 
 

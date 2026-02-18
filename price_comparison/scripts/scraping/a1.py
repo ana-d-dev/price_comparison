@@ -46,7 +46,7 @@ class A1:
         """
         try:
             # Launch browser in non-headless mode (set to True for production automation).
-            self.browser = self.p.chromium.launch(headless=False)
+            self.browser = self.p.chromium.launch(headless=True)
 
             # Opening a new browser tab
             self.page = self.browser.new_page()

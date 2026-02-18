@@ -29,7 +29,13 @@ body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     line-height: 1.6;
+
+    /* Sticky footer layout */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
 
 /* =========================
    NAVIGATION
@@ -166,9 +172,12 @@ th.sortable:hover {
 ========================= */
 footer {
     margin-top: 4rem;
-    padding-top: 2rem;
+    padding-top: 1rem;
     font-size: 0.9rem;
     color: var(--text-muted);
+}
+main {
+    flex: 1;
 }
 
 /* =========================
@@ -221,6 +230,5 @@ footer {
         margin-top: 6rem;
     }
 }
-
 
 

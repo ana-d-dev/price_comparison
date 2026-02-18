@@ -54,7 +54,7 @@ class Bon:
         """
         try:
             # Start a Chromium browser (headless=True = no visible window).
-            self.browser = self.p.chromium.launch(headless=False)
+            self.browser = self.p.chromium.launch(headless=True)
 
             # Open a new browser tab/page.
             self.page = self.browser.new_page()
