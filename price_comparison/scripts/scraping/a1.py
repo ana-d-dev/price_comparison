@@ -46,7 +46,7 @@ class A1:
         """
         try:
             # Launch browser in non-headless mode (set to True for production automation).
-            self.browser = self.p.chromium.launch(headless=False)
+            self.browser = self.p.chromium.launch(headless=True)
 
             # Opening a new browser tab
             self.page = self.browser.new_page()
@@ -329,8 +329,6 @@ class A1:
         self.all_together_main()
         self.all_together_add()
 
-        for i in self.new_dict:
-            print(i)
 
     def run(self) -> None:
         """
@@ -373,5 +371,3 @@ class A1:
         # Process and clean scraped data after Playwright session ends
         self.handling_data()
 
-a1 = A1()
-a1.run()
