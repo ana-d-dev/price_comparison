@@ -46,7 +46,7 @@ class A1:
         """
         try:
             # Launch browser in non-headless mode (set to True for production automation).
-            self.browser = self.p.chromium.launch(headless=True)
+            self.browser = self.p.chromium.launch(headless=False)
 
             # Opening a new browser tab
             self.page = self.browser.new_page()
@@ -80,27 +80,11 @@ class A1:
         """
         try:
             assert self.page is not None
-            # Collect all tariff-category buttons on the page
-            self.buttons = self.page.query_selector_all(tariffs['a1']['buttons'])
 
-            # Click each button to reveal and scrape corresponding tariff data
-            for button in self.buttons:
-                button.click()
-
-                # Extract main tariff fields after button click
-                main_names = self.page.locator(tariffs['a1']['main_names']).all_inner_texts()
-                main_values = self.page.locator(tariffs['a1']['main_values']).all_inner_texts()
-                main_prices = self.page.locator(tariffs['a1']['main_prices']).all_inner_texts()
-
-                # Appending data into raw containers
-                for name in main_names:
-                    self.raw_main_names.append(name)
-
-                for value in main_values:
-                    self.raw_main_values.append(value)
-
-                for price in main_prices:
-                    self.raw_main_prices.append(price)
+            # Extract main tariff fields
+            self.raw_main_names = self.page.locator(tariffs['a1']['main_names']).all_inner_texts()
+            self.raw_main_values = self.page.locator(tariffs['a1']['main_values']).all_inner_texts()
+            self.raw_main_prices = self.page.locator(tariffs['a1']['main_prices']).all_inner_texts()
 
             # Extract additional tariffs (names, prices, GB/minutes).
             self.raw_add_names = self.page.locator(tariffs['a1']['add_names']).all_inner_texts()
@@ -193,9 +177,8 @@ class A1:
         Stores results in self.clean_main_values.
         """
         self.clean_main_values = [
-            value.replace('Saznaj više', '').strip()
+            value.replace('min/sms', '').replace('GB', '').strip()
             for value in self.raw_main_values
-            if value.replace('Saznaj više', '').strip()
         ]
 
 
@@ -346,6 +329,8 @@ class A1:
         self.all_together_main()
         self.all_together_add()
 
+        for i in self.new_dict:
+            print(i)
 
     def run(self) -> None:
         """
@@ -387,3 +372,6 @@ class A1:
 
         # Process and clean scraped data after Playwright session ends
         self.handling_data()
+
+a1 = A1()
+a1.run()

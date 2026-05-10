@@ -23,10 +23,10 @@ Example usage:
 """
 tariffs = {
     'a1': {
-        'buttons': '.field-radio__indicator',
-        'main_names': '.card-prepaid__title.font-serif',
-        'main_values': '.text-red.font-bold',
-        'main_prices': '.card-prepaid__top',
+        'buttons': '.title-and-tabs__tab',
+        'main_names': '.prepaid-box-card__title',
+        'main_values': '.prepaid-box-card__feature',
+        'main_prices': '.prepaid-box-card__price-total',
         'add_names': '.title',
         'add_prices': '.price',
         'add_gbs': '.description',

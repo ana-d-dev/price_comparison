@@ -38,7 +38,7 @@ class Telemach:
         self.raw_add_gbs: list[str] = []
 
         # List of tariffs that don't include minutes/SMS
-        self.skip_names: list[str] = ['SIM2GO kartica 1 + 29 GB', 'SIM2GO za prijenos broja']
+        self.skip_names: list[str] = ['SIM2GO kartica 1 + 9 GB', 'SIM2GO za prijenos broja']
 
         # Containers for cleaned main data
         self.main_final_minutes: list[str] = []

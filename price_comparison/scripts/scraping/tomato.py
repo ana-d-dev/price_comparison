@@ -111,7 +111,7 @@ class Tomato:
 
         # Clean each raw price: strip spaces and replace comma with dot for float conversion
         self.main_prices = [
-            price.replace(',', '.').strip()
+            price.replace('€/mj', ' ').strip()
             for price in self.main_raw_prices
         ]
 
@@ -120,25 +120,14 @@ class Tomato:
         """
         Cleans scraped unit strings and converts them to integers.
 
-        - Replaces '\xa0' and the word 'jedinica' with spaces.
-        - Splits values on '+' and strips extra whitespace.
-        - Adds both parts together to calculate total units.
-
-        Assumes each unit string contains two numeric parts.
+        - Removes the word 'jedinica' and all whitespace characters.
+        - Converts cleaned unit values into integers for calculations.
         """
-        for unit in self.main_raw_units:
+        self.main_units = [
             # Replace 'jedinica' and non-breaking spaces, then strip extra spaces
-            clean_unit = unit.replace('jedinica', ' ').replace('\xa0', ' ').strip()
-
-            # Split the string on '+' and remove remaining spaces
-            parts = [
-                part.strip().replace(' ', '')
-                for part in clean_unit.split('+')
-            ]
-
-            # Convert both parts to int and sum to get total units
-            self.main_units.append(int(parts[0]) + int(parts[1]))
-
+            int(unit.replace('jedinica', '').replace(' ', '').strip())
+            for unit in self.main_raw_units
+        ]
 
     def all_together(self) -> None:
         """

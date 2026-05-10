@@ -20,8 +20,8 @@ Example usage:
 """
 tariffs = {
     'tomato': {
-        'names': '.tariff-listing-card__subtitle',
-        'units': '.tariff-listing-card__title',
-        'prices': '.tariff-price__amount'
+        'names': '.tarrifs__item-header',
+        'units': '.tarrifs__description',
+        'prices': '.price.tarrifs__price'
     }
 }
