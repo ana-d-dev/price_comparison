@@ -1,5 +1,5 @@
 ALLOWED_PROVIDERS = ['A1', 'BONBON', 'T-COM', 'TELEMACH', 'TOMATO']
-ALLOWED_GB = ['Neograničen', 'Neograničeni', 'Flat', 'Unlimited', 'Flat rate', 'All you can use', 'Unlimited data']
+ALLOWED_GB = ['Neograničen', 'Neograničeni', 'Neograničeni internet', 'Flat', 'Unlimited', 'Flat rate', 'All you can use', 'Unlimited data']
 REQUIRED_KEYS = {'scraped_date', 'provider', 'name', 'price', 'gb', 'minutes', 'sms', 'units', 'one_gb_price', 'sixty_min_price', 'thousand_units'}
 
 
